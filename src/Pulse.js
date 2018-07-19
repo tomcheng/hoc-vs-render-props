@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 
 class Pulse extends Component {
   static propTypes = {
-    rate: PropTypes.number.isRequired
+    rate: PropTypes.number
   };
+
+  static defaultProps = { rate: 10 };
 
   state = { progress: 0 };
 

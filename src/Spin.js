@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 
 class Spin extends Component {
   static propTypes = {
-    rate: PropTypes.number.isRequired
+    rate: PropTypes.number
   };
+
+  static defaultProps = { rate: 1 };
 
   state = { rotation: 0 };
 

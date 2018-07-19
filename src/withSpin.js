@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./withSpin.css";
 
-const withSpin = TargetComponent =>
+const withSpin = ({ rate = 1 } = {}) => TargetComponent =>
   class extends Component {
     state = { rotation: 0 };
 
@@ -13,7 +13,7 @@ const withSpin = TargetComponent =>
       this.setState(
         state => ({
           ...state,
-          rotation: state.rotation + 1
+          rotation: state.rotation + rate
         }),
         () => {
           requestAnimationFrame(this.tick);
