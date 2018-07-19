@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./withSpin.css";
 
 const withSpin = ({ rate = 1 } = {}) => TargetComponent =>
   class extends Component {
