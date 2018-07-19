@@ -9,27 +9,15 @@ const withSpin = ({ rate = 1 } = {}) => TargetComponent =>
     }
 
     tick = () => {
-      this.setState(
-        state => ({
-          ...state,
-          rotation: state.rotation + rate
-        }),
-        () => {
-          requestAnimationFrame(this.tick);
-        }
-      );
+      this.setState({ rotation: this.state.rotation + rate }, () => {
+        requestAnimationFrame(this.tick);
+      });
     };
 
     render() {
-      const { rotation } = this.state;
-
       return (
         <TargetComponent
-          {...this.props}
-          style={{
-            ...this.props.style,
-            transform: `rotate3d(0, 0, 1, ${rotation}deg)`
-          }}
+          style={{ transform: `rotate3d(0, 0, 1, ${this.state.rotation}deg)` }}
         />
       );
     }
