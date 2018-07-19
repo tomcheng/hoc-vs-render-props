@@ -2,10 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 
 class Pulse extends Component {
-  static propTypes = {
-    rate: PropTypes.number
-  };
-
+  static propTypes = { rate: PropTypes.number };
   static defaultProps = { rate: 10 };
 
   state = { progress: 0 };
@@ -15,16 +12,9 @@ class Pulse extends Component {
   }
 
   tick = () => {
-    const { rate } = this.props;
-    this.setState(
-      state => ({
-        ...state,
-        progress: state.progress + rate
-      }),
-      () => {
-        requestAnimationFrame(this.tick);
-      }
-    );
+    this.setState({ progress: this.state.progress + this.props.rate }, () => {
+      requestAnimationFrame(this.tick);
+    });
   };
 
   render() {
@@ -36,8 +26,6 @@ class Pulse extends Component {
   }
 }
 
-Pulse.propTypes = {
-  children: PropTypes.func.isRequired
-};
+Pulse.propTypes = { children: PropTypes.func.isRequired };
 
 export default Pulse;

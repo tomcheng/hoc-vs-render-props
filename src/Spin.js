@@ -2,10 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 
 class Spin extends Component {
-  static propTypes = {
-    rate: PropTypes.number
-  };
-
+  static propTypes = { rate: PropTypes.number };
   static defaultProps = { rate: 1 };
 
   state = { rotation: 0 };
@@ -15,16 +12,9 @@ class Spin extends Component {
   }
 
   tick = () => {
-    const { rate } = this.props;
-    this.setState(
-      state => ({
-        ...state,
-        rotation: state.rotation + rate
-      }),
-      () => {
-        requestAnimationFrame(this.tick);
-      }
-    );
+    this.setState({ rotation: this.state.rotation + this.props.rate }, () => {
+      requestAnimationFrame(this.tick);
+    });
   };
 
   render() {
@@ -34,8 +24,6 @@ class Spin extends Component {
   }
 }
 
-Spin.propTypes = {
-  children: PropTypes.func.isRequired
-};
+Spin.propTypes = { children: PropTypes.func.isRequired };
 
 export default Spin;
