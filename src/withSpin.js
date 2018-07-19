@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const withSpin = ({ rate = 1 } = {}) => TargetComponent =>
+const withSpin = (TargetComponent, { rate = 1 } = {}) =>
   class extends Component {
     state = { rotation: 0 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-const withPulse = ({ rate = 10 } = {}) => TargetComponent =>
+const withPulse = (TargetComponent, { rate = 10 } = {}) =>
   class extends Component {
     state = { progress: 0 };
 
