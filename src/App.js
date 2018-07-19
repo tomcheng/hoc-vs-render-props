@@ -1,18 +1,69 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import withSpin from "./withSpin";
+import Spin from "./Spin";
+import Pulse from "./Pulse";
+import MyComponent from "./MyComponent";
+
+const SpinningComponent = withSpin(MyComponent);
 
 class App extends Component {
+  state = { spinRate: 1, pulseRate: 1 };
+
+  handleChangeSpinRate = evt => {
+    this.setState({ spinRate: parseFloat(evt.target.value) });
+  };
+
+  handleChangePulseRate = evt => {
+    this.setState({ pulseRate: parseFloat(evt.target.value) });
+  };
+
   render() {
+    const { spinRate, pulseRate } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Higher Order Components vs Render Props</h1>
+          <MyComponent />
+          <SpinningComponent />
+          <Pulse rate={pulseRate}>
+            {({ style: pulseStyle }) => (
+              <Spin rate={spinRate}>
+                {({ style: spinStyle }) => (
+                  <MyComponent
+                    style={{
+                      ...pulseStyle,
+                      ...spinStyle
+                    }}
+                  />
+                )}
+              </Spin>
+            )}
+          </Pulse>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="App-intro">
+          <div>
+            <input
+              type="range"
+              value={spinRate}
+              onChange={this.handleChangeSpinRate}
+              min={-20}
+              max={20}
+              step={0.1}
+            />
+          </div>
+          <div>
+            <input
+              type="range"
+              value={pulseRate}
+              onChange={this.handleChangePulseRate}
+              min={0}
+              max={20}
+              step={0.1}
+            />
+          </div>
+        </div>
       </div>
     );
   }
