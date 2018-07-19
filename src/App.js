@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./App.css";
+import MyComponent from "./MyComponent";
 // import withSpin from "./withSpin";
 // import Spin from "./Spin";
+// import withPulse from "./withPulse";
 // import Pulse from "./Pulse";
-import MyComponent from "./MyComponent";
 
 class App extends Component {
   render() {
@@ -13,9 +14,7 @@ class App extends Component {
           <h1 className="App-title">Higher Order Components vs Render Props</h1>
           <MyComponent />
         </header>
-        <p className="App-intro">
-          Oh hai
-        </p>
+        <p className="App-intro">Oh hai</p>
       </div>
     );
   }
